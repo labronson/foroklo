@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lauren Bronson — For Oklo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0b;
+    --bg2: #141412;
+    --text: #e8e4dc;
+    --muted: #7a7568;
+    --accent: #c8a96e;
+    --accent2: #e8c98a;
+    --rule: #2a2924;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* GLOW — subtle warm reactor core light */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    padding: 8rem 0 6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.8;
+  }
+  .hero-sub strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* SECTION */
+  section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+  }
+
+  /* WHY */
+  .why-text {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+  .why-note {
+    font-size: 0.875rem;
+    color: var(--muted);
+    border-left: 1px solid var(--rule);
+    padding-left: 1.25rem;
+    line-height: 1.8;
+  }
+
+  /* WHAT I BRING */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .pillar {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--rule);
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pillar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .pillar li {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--rule);
+  }
+  .pillar li strong {
+    display: block;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+
+  /* WORK */
+  .work-item {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .work-item:last-child { border-bottom: none; }
+  .work-meta { }
+  .work-org {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .work-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .work-body {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .work-body strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* CONTACT */
+  .contact-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .contact-statement {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--text);
+    max-width: 380px;
+    line-height: 1.5;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+  .contact-links a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .contact-links a:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 0;
+    text-align: center;
+  }
+  footer p {
+    font-size: 0.7rem;
+    color: var(--rule);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .pillars { grid-template-columns: 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--rule); }
+    .pillar:last-child { border-bottom: none; }
+    .work-item { grid-template-columns: 1fr; gap: 1rem; }
+    .contact-links { align-items: flex-start; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-name">Lauren Bronson</span>
+    <ul class="nav-links">
+      <li><a href="#why">Why Oklo</a></li>
+      <li><a href="#bring">What I bring</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Communications & Events Associate</p>
+    <h1>I'd like to<br>work for <em>Oklo.</em></h1>
+    <p class="hero-sub">
+      15 years in entertainment and <strong>mission-driven organizations</strong> — from Vans Warped Tour to My Chemical Romance to Make-A-Wish to the USO. The sector is changing. The standard isn't. I do my best work when I believe in where I am.
+    </p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <p class="section-label">Why this, why now</p>
+    <p class="why-text">
+      I'm making a deliberate lane change. Not because I burned out on mission-driven work — because I found the next mission worth changing for.
+    </p>
+    <p class="why-note">
+      What Oklo is building — clean, reliable, affordable energy at scale — is the kind of work that deserves people who show up fully. I've spent 15 years in environments where the stakes were real, the details mattered, and getting it right for the people you were serving was non-negotiable. I'm looking for that again.<br><br>
+      I'm an Oklo shareholder. This isn't a pivot of convenience. It's a considered bet on a company I believe in.
+    </p>
+  </div>
+</section>
+
+<section id="bring">
+  <div class="wrap">
+    <p class="section-label">What I bring</p>
+    <div class="pillars">
+      <div class="pillar">
+        <p class="pillar-title">Events</p>
+        <ul>
+          <li><strong>End-to-end logistics</strong>Run-of-show, vendor coordination, travel, on-site execution</li>
+          <li><strong>Scale & complexity</strong>Single-day tours to multi-day international activations</li>
+          <li><strong>High-stakes environments</strong>Military installations, security protocols, VIP talent</li>
+          <li><strong>300–400 concurrent</strong>Managing multiple workstreams without dropping anything</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <p class="pillar-title">Communications</p>
+        <ul>
+          <li><strong>Materials that reflect the brand</strong>Briefing docs, pitch decks, partner comms</li>
+          <li><strong>Social & content</strong>Drafting, coordinating, scheduling across channels</li>
+          <li><strong>Public affairs</strong>Working with military PA offices on media access and messaging</li>
+          <li><strong>Canva & AI tools</strong>Producing polished work efficiently</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <p class="pillar-title">Coordination</p>
+        <ul>
+          <li><strong>Cross-functional fluency</strong>Legal, ops, marketing, comms, development — simultaneously</li>
+          <li><strong>External partners</strong>Studios, agencies, talent reps, vendors</li>
+          <li><strong>Risk identification</strong>Finding gaps early, escalating fast</li>
+          <li><strong>Startup wiring</strong>Warped Tour, Riot Squad — I've never needed a lot of process</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <p class="section-label">Selected work</p>
+
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-org">USO × Focus Features</p>
+        <p class="work-title">The campaign that changed mid-flight</p>
+      </div>
+      <p class="work-body">
+        Built a multi-partner campaign around Focus Features' <em>PRESSURE</em> and a D-Day premise. When talent withdrew due to geopolitical developments, <strong>restructured the entire campaign</strong> around a WWII letters archive narrative — securing a pro-bono digitization partnership, repositioning the story, and delivering a stronger outcome for both organizations. The studio committed to funding 20+ influencers at their own expense.
+      </p>
+    </div>
+
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-org">USO × NASA × U.S. Space Force</p>
+        <p class="work-title">Live from the International Space Station</p>
+      </div>
+      <p class="work-body">
+        Originated and coordinated a live broadcast from the ISS for <strong>3,300+ military-connected students</strong> as part of Space Force's STEMtoSpace initiative. Managed logistics, partner coordination, and execution across NASA, Space Force, and the USO. Recognized by NASA as the largest external virtual activation of its kind.
+      </p>
+    </div>
+
+    <div class="work-item">
+      <div class="work-meta">
+        <p class="work-org">USO Studio Tour Program</p>
+        <p class="work-title">From cost center to partner-funded model</p>
+      </div>
+      <p class="work-body">
+        Inherited a studio engagement program costing <strong>$50K–$150K per activation</strong> in organizational funds. Restructured the model so production, travel, and content costs were absorbed entirely by studio partners — expanding the roster to include Amazon MGM, Prime Video, Paramount+, Netflix, and Focus Features while eliminating internal subsidy.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-row">
+      <p class="contact-statement">
+        I applied through the standard channel. This is just so you know I mean it.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:laurenbronson@gmail.com">laurenbronson@gmail.com</a>
+        <a href="https://thisisbronson.com" target="_blank">thisisbronson.com</a>
+        <a href="https://linkedin.com/in/laurenbronson" target="_blank">linkedin.com/in/laurenbronson</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Built for Oklo — May 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
